@@ -10,7 +10,10 @@
 <%@page import="model.DataAccess"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
+
 <% 
+    
     DataAccess dTransac = new DataAccess(); 
     String id = (String) request.getAttribute("id");
     Employee e = null;

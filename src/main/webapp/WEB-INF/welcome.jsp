@@ -9,6 +9,7 @@
 <%@page import="model.userSession"%>
 <%@page import="model.DataAccess"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <head>
@@ -19,6 +20,11 @@
     <a href="Controller?sub=Disconnect"><input type="button" value="Log out"></a>
     <div class="w3-container">
         <h1>List of Employees</h1><br/>
+        
+                
+        <c:set var="query" value="SELECT * FROM EMPLOYEES"/>
+
+        
 <% 
     DataAccess dTransac = new DataAccess(); 
     String query = "SELECT * FROM EMPLOYEES";

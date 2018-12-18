@@ -90,7 +90,7 @@ public class Controller extends HttpServlet {
         }
         else{
             if(login.equals("") || pwd.equals("")){
-            request.setAttribute("ErrMessage", "<p>You must enter values in both fields</p>");
+            request.setAttribute("ErrMessage", "You must enter values in both fields");
             request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
             }
             else
@@ -111,7 +111,7 @@ public class Controller extends HttpServlet {
                         
                     }
                 }
-                request.setAttribute("ErrMessage", "<p>Verify your login/password and try again! </p>");
+                request.setAttribute("ErrMessage", "Verify your login/password and try again!");
                 request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
                 
                 
