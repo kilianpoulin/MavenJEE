@@ -13,6 +13,7 @@ import model.userSession;
 public class Controller extends HttpServlet {
 
     /**
+     * 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
