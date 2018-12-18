@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/welcome.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     
-</head><body><div class="w3-container">
+</head><body>
+    <a href="Controller?sub=Disconnect"><input type="button" value="Log out"></a>
+    <div class="w3-container">
         <h1>List of Employees</h1><br/>
 <% 
     DataAccess dTransac = new DataAccess(); 

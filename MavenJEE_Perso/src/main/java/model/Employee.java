@@ -1,7 +1,6 @@
 package model;
 
 /**
- * 
  *
  * @author Pas mathieu c'est sûr
  */
