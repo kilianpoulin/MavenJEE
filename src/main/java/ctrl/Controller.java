@@ -109,7 +109,7 @@ public class Controller extends HttpServlet {
                         dTransac = new DataAccess();
                         query = "SELECT * FROM EMPLOYEES";
                         ArrayList <Employee> Employees = dTransac.getDBEmployees(dTransac.getResultSet(dTransac.getStatement(dTransac.getConnection()), query));
-                       session.setAttribute("user", user);
+                        session.setAttribute("user", user);
                         //session = request.getSession();
                         request.setAttribute("keyListEmployees", Employees);
                         request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);

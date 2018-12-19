@@ -5,7 +5,7 @@ package model;
  * @author Pas mathieu c'est sûr
  */
 public class Employee {
-    private String _Name;
+    private String _Name; 
     private String _FirstName;
     private String _HomePhone;
     private String _MobilePhone;
