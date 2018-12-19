@@ -106,9 +106,13 @@ public class Controller extends HttpServlet {
                 {
                     if(u.equals(user))
                     {
+                        dTransac = new DataAccess();
+                        query = "SELECT * FROM EMPLOYEES";
+                        ArrayList <Employee> Employees = dTransac.getDBEmployees(dTransac.getResultSet(dTransac.getStatement(dTransac.getConnection()), query));
                        session.setAttribute("user", user);
-                       request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
-                        
+                        //session = request.getSession();
+                        request.setAttribute("keyListEmployees", Employees);
+                        request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
                     }
                 }
                 request.setAttribute("ErrMessage", "Verify your login/password and try again!");

@@ -21,11 +21,36 @@
     <div class="w3-container">
         <h1>List of Employees</h1><br/>
         
+        <table class='w3-table w3-striped w3-centered'>
+            <form method ='GET' action='Controller'>
+                <tr class='w3-blue'>
+                    <th>Sel</th>
+                    <th>NAME</th>
+                    <th>FIRST NAME</th>
+                    <th>HOME PHONE</th>
+                    <th>MOBILE PHONE</th>
+                    <th>WORK PHONE</th>
+                    <th>ADDRESS</th>
+                    <th>POSTAL CODE</th>
+                    <th>CITY</th>
+                    <th>EMAIL</th>
+                </tr>"
+                <jsp:useBean id = "key" type = "model.Employee" scope="request"/>
+                <jsp:getProperty name = "key" property = "listEmployee"/>
                 
-        <c:set var="query" value="SELECT * FROM EMPLOYEES"/>
-
+                <c:if test="${listEmployee == null}"/>
+                      <c:out value = "I'm here"/>
+                <c:forEach items = "${keyListEmployees}" var = "employee">
+                <tr>
+                        <td><input type='radio' name='edit' value='<c:out value = "${employee.getID}"/>'/></td>
+                        <td><c:out value = "${employee.getName}"/></td>
+                </tr>
+                </c:forEach>
+            </form>
+        </table>
         
 <% 
+    /*
     DataAccess dTransac = new DataAccess(); 
     String query = "SELECT * FROM EMPLOYEES";
     ArrayList <Employee> Employees = dTransac.getDBEmployees(dTransac.getResultSet(dTransac.getStatement(dTransac.getConnection()), query));
@@ -38,7 +63,7 @@
         out.println("<td>" + e.getName() + "</td><td>" + e.getFirstName() + "</td><td>" + e.getHomePhone() + "</td><td>" + e.getMobilePhone() + "</td><td>" + e.getWorkPhone() + "</td><td>" + e.getAddress() + "</td><td>" + e.getPostalCode() + "</td><td>" + e.getCity() + "</td><td>" + e.getEmail() + "</td>");
         out.println("</tr>");
     }
-    
+    */
 %>
 </table>
     </div>
