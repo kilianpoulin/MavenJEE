@@ -43,6 +43,10 @@ public class Controller extends HttpServlet {
         String city = request.getParameter("city");
         String email = request.getParameter("email");
         String id = request.getParameter("edit");
+        String id_mod2 = request.getParameter("id_mod");
+        int id_mod = 0;
+        if(id_mod2 != null)
+            id_mod = Integer.parseInt(id_mod2);
         HttpSession session = request.getSession();
         userSession user = (userSession)session.getAttribute("user");
         String query;
@@ -63,6 +67,18 @@ public class Controller extends HttpServlet {
                     case "Details":
                         request.setAttribute("id", request.getParameter("edit"));
                         request.setAttribute("choice", "Details");
+                        
+                        dTransac = new DataAccess(); 
+                        String id_tmp = (String) request.getParameter("edit");
+                        Employee e = null;
+                        if(id_tmp != null){
+                            query = "SELECT * FROM EMPLOYEES WHERE ID_EMPLOYEES = " + id_tmp;
+                            
+                            ArrayList <Employee> Employees = dTransac.getDBEmployees(dTransac.getResultSet(dTransac.getStatement(dTransac.getConnection()), query));
+                            e = Employees.get(0);
+                            request.setAttribute("e", e);
+                        }
+    
                         request.getRequestDispatcher("WEB-INF/complete_form.jsp").forward(request, response);
                         break;
                     case "Add New":
@@ -71,7 +87,7 @@ public class Controller extends HttpServlet {
                         dTransac.executeUpdate(query);
                         request.getRequestDispatcher("Controller?sub=success").forward(request, response);
                     case "Save":
-                        query = "UPDATE EMPLOYEES SET NAME='" + name +"' ,FIRSTNAME='" + fname +"' ,HOMEPHONE='" + hphone +"' ,MOBILEPHONE='" + mphone+"' ,WORKPHONE='" + pphone+"' ,ADDRESS='" + address+"' ,POSTALCODE='" + zipcode+"' ,CITY='" + city+"' ,EMAIL='" + email+"' WHERE ID_EMPLOYEES=" + id;
+                        query = "UPDATE EMPLOYEES SET NAME='" + name +"' ,FIRSTNAME='" + fname +"' ,HOMEPHONE='" + hphone +"' ,MOBILEPHONE='" + mphone+"' ,WORKPHONE='" + pphone+"' ,ADDRESS='" + address+"' ,POSTALCODE='" + zipcode+"' ,CITY='" + city+"' ,EMAIL='" + email+"' WHERE ID_EMPLOYEES=" + id_mod;
                         dTransac.executeUpdate(query);
                         request.getRequestDispatcher("Controller?sub=success").forward(request, response);
                     case "Disconnect":{
@@ -80,6 +96,12 @@ public class Controller extends HttpServlet {
                         break;
                     }
                     default: 
+                        dTransac = new DataAccess();
+                        query = "SELECT * FROM EMPLOYEES";
+                        ArrayList <Employee> Employees = dTransac.getDBEmployees(dTransac.getResultSet(dTransac.getStatement(dTransac.getConnection()), query));
+                        session.setAttribute("user", user);
+                        //session = request.getSession();
+                        request.setAttribute("keyListEmployees", Employees);
                         request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
                         break;
                 }
