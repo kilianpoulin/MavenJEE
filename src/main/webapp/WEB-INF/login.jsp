@@ -14,10 +14,7 @@
     <body>
         <h1>Login</h1>
         
-        <c:set var="message" value="${ErrMessage}"/>
-        <c:if test = "${message != null}">
-            <p><c:out value="${message}"/></p>
-        </c:if>
+        <p>${ErrMessage}</p>
       
         <form method="POST" action="Controller">
             <input type="text" name="login" placeholder="Login"/> <br/>
