@@ -10,19 +10,16 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class DataAccess {
-        // declare globally, intialize locally
+    // declare globally, intialize locally
     private Connection dbConn;
     private Statement stmt;
     private ResultSet rs;
-    private final String dbUrl = "jdbc:derby://localhost:1527/PROJET";
-    private final String user = "adm";
-    private final String pwd = "adm";
+    private final String dbUrl = "jdbc:mysql://localhost:3306/projet?zeroDateTimeBehavior=convertToNull";
+    private final String user = "root";
+    private final String pwd = "";
 
         public Connection getConnection() {
         try{
@@ -50,45 +47,7 @@ public class DataAccess {
             System.out.println(sqle.getMessage());
         }
         return rs;
-    }
-        
-        public ArrayList getDBUsers(ResultSet rs){
-        ArrayList<userSession> userDBList = new ArrayList<userSession>();
-        try{
-            while(rs.next()){
-                userSession uS = new userSession();
-                uS.setLogin(rs.getString("LOGIN"));
-                uS.setPassword(rs.getString("PWD"));
-                userDBList.add(uS);
-            }
-        } catch(SQLException sqle){
-            System.out.println(sqle.getMessage());
-        }
-        return userDBList;
-    }
-        
-    public ArrayList getDBEmployees(ResultSet rs){
-        ArrayList<Employee> Employees = new ArrayList<Employee>();
-        try{
-            while(rs.next()){
-                Employee e = new Employee();
-                e.setName(rs.getString("NAME"));
-                e.setFirstName(rs.getString("FIRSTNAME"));
-                e.setHomePhone(rs.getString("HOMEPHONE"));
-                e.setMobilePhone(rs.getString("MOBILEPHONE"));
-                e.setWorkPhone(rs.getString("WORKPHONE"));
-                e.setAddress(rs.getString("ADDRESS"));
-                e.setPostalCode(rs.getString("POSTALCODE"));
-                e.setCity(rs.getString("CITY"));
-                e.setEmail(rs.getString("EMAIL"));
-                e.setID(rs.getString("ID_EMPLOYEES"));
-                Employees.add(e);
-            }
-        } catch(SQLException sqle){
-            System.out.println(sqle.getMessage());
-        }
-        return Employees;
-    }
+    }        
     
     public void executeUpdate(String query){
         try {

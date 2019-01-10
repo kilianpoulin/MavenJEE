@@ -15,4 +15,19 @@
   color: white; 
 }
 
+.no_member{
+    color:blue;
+    font-weight:bold;
+}
+
+.logout{
+    float:right;
+    margin-right:5%;
+    margin-top:1%;
+}
+.logout img{
+    width:3%;
+    padding-left:2%;
+}
+
 
